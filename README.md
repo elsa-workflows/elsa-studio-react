@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> React Studio development has moved to [elsa-core/studio/react](https://github.com/elsa-workflows/elsa-core/tree/main/studio/react).
+> Use the canonical repository for current source, documentation, issues and contributions.
+> This repository retains the original history; see the [history-preserving import receipt](https://github.com/elsa-workflows/elsa-core/blob/main/docs/integration-program/studio-react-source-import.md).
+
 <div align="center">
   <img src="src/app/icon.png" alt="Elsa" width="88" height="88">
   <h1>Elsa Studio</h1>
