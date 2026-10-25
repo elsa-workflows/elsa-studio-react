@@ -10,6 +10,22 @@ This guide takes you from a clone to a signed-in studio connected to an Elsa ser
 | pnpm | 10 | The repository pins `pnpm@10.33.0` through `packageManager`. |
 | Elsa server | 3.x | Must expose the REST API and allow the studio's origin through CORS. |
 
+### No Elsa server yet?
+
+Start the published Elsa 3 server image on the port the shipped `studio.config.json` already points at:
+
+```bash
+docker run -d --name elsa-server -p 5080:8080 \
+  -e ASPNETCORE_ENVIRONMENT=Development \
+  elsaworkflows/elsa-server-v3:3.9.0
+```
+
+It serves the API at `http://localhost:5080/elsa/api`, allows any origin in Development, and signs in
+with `admin` / `password`. Remove it later with `docker rm -f elsa-server`.
+
+The Elsa 4 Workbench (`elsaworkflows/elsa-workbench`, port `13000` in the Elsa 4 Docker quick start)
+exposes a different API and does not work with this studio.
+
 ## Install and run
 
 ```bash
@@ -22,7 +38,9 @@ every request, so configuration changes need only a browser reload, not a restar
 
 ## Point it at a server
 
-Open `studio.config.json` and set the first entry's `url` to your Elsa API. The base URL ends with the
+The shipped `studio.config.json` already points its first entry at `http://localhost:5080/elsa/api`,
+which matches the Docker command above. To use another server, set the first entry's `url` to your
+Elsa API. The base URL ends with the
 API route prefix, which is `/elsa/api` by default:
 
 ```jsonc

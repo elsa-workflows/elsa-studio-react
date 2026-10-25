@@ -57,7 +57,7 @@ your token, so a user without `secrets:view` will not see Secrets.
 ## Sign-in fails
 
 - **No status code in the network tab** is CORS, not credentials. See above.
-- **401 from `/identity/login`** means the credentials were rejected, or the configured provider does
+- **`{"isAuthenticated":false}` (HTTP 200), or a 401, from `/identity/login`** means the credentials were rejected, or the configured provider does
   not match the server. A development Elsa server usually accepts `admin` / `password`.
 - **404 from `/identity/login`** means the server does not have the Elsa Identity module, so pick a
   different provider in [configuration](configuration.md#authentication).

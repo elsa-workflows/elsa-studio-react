@@ -47,8 +47,9 @@ pnpm install
 pnpm dev                 # http://localhost:3000
 ```
 
-Point `servers[0].url` in `studio.config.json` at your Elsa API, which is typically something like
-`https://localhost:5001/elsa/api`, then sign in. The default authentication provider is Elsa Identity,
+The shipped `studio.config.json` points its first server at `http://localhost:5080/elsa/api`; change
+`servers[0].url` if your Elsa API lives elsewhere, then sign in. No server yet? The
+[Getting started guide](docs/getting-started.md#no-elsa-server-yet) shows how to run one with Docker. The default authentication provider is Elsa Identity,
 so a username and password is all you need.
 
 New to the project? Start with the [Getting started guide](docs/getting-started.md).
@@ -170,7 +171,8 @@ src/
 | Command | Purpose |
 |---|---|
 | `pnpm dev` | Development server on port 3000. |
-| `pnpm build` / `pnpm start` | Production build (standalone output) and server. |
+| `pnpm build` | Production build (standalone output). Run it with `node .next/standalone/server.js`; see [Deployment](docs/deployment.md#running-without-docker). |
+| `pnpm start` | Quick local check of a production build (`next start`; Next.js warns that it does not use the standalone output). |
 | `pnpm test` | Unit tests (Vitest). |
 | `pnpm lint` | ESLint. |
 | `npx tsc --noEmit` | Type check. |

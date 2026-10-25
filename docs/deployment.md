@@ -46,11 +46,18 @@ without a restart. See [Configuration](configuration.md) for the full reference.
 ```bash
 pnpm install
 pnpm build
-pnpm start
+cp -r .next/static .next/standalone/.next/static
+cp -r public .next/standalone/public
+cp studio.config.json .next/standalone/studio.config.json
+node .next/standalone/server.js     # http://localhost:3000; set PORT and HOSTNAME to change
 ```
 
-The standalone output lands in `.next/standalone` with static assets in `.next/static`, which is what
-the Dockerfile copies.
+The standalone output lands in `.next/standalone`. Its `server.js` changes into its own directory, so
+the static assets, `public` and `studio.config.json` have to sit next to it (or set
+`STUDIO_CONFIG_PATH` / `STUDIO_CONFIG`). This is exactly what the Dockerfile does.
+
+`pnpm start` (`next start`) also serves the build for a quick local check, but Next.js warns that it
+does not work with `output: "standalone"`; use `server.js` for anything you deploy.
 
 ## Requirements on the Elsa server
 
